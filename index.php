@@ -1,12 +1,7 @@
-		<?php
-		include "includes/connection.php";
-		require_once'includes/send.php';
-
-		if(!empty($_POST)){
-			save_mes();
-		}
-
-		
+<?php
+	include "includes/connection.php";
+	require_once'includes/function.php';
+	include "includes/switch.php"
 		?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +18,7 @@
 	</div>
 	<div class='page'>
 		<div class='message_form'>
-			<form action="" method="post">
+			<form action="index.php" method="post">
 				<input class="msg1" type="text" name="author" placeholder="     Укажите своё имя" required>*
 				<br>
 				<textarea class="msg2" type="text" name="message" required> </textarea>*
@@ -33,9 +28,9 @@
 			</form>
 		</div>
 		<?php
-		$information = mysqli_query($connection, "SELECT * FROM `messages` ORDER BY id DESC;");
+		$information = mysqli_query($connection, "SELECT * FROM `messages`;");
 		$inf = mysqli_fetch_array($information);
-		while ($inf = mysqli_fetch_array($information))
+		while ($inf = mysqli_fetch_assoc($information))
 		{
 		?>
 		<div class='message'>
